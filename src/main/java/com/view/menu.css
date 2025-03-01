@@ -1,0 +1,39 @@
+.main-container {
+  -fx-background-color: #f5f5f5;
+}
+
+.title-label {
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #333333;
+}
+
+.menu-button {
+  -fx-background-color: #4b6eaf;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 20px;
+  -fx-background-radius: 5px;
+  -fx-min-width: 200px;
+}
+
+.menu-button:hover {
+  -fx-background-color: #3a5683;
+  -fx-cursor: hand;
+}
+
+.exit-button {
+  -fx-background-color: #d9534f;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 20px;
+  -fx-background-radius: 5px;
+  -fx-min-width: 200px;
+}
+
+.exit-button:hover {
+  -fx-background-color: #c9302c;
+  -fx-cursor: hand;
+}
