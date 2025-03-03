@@ -3,6 +3,7 @@ package com.controller;
 import java.io.IOException;
 
 import com.app.App;
+import com.service.AuthenticationService;
 import com.service.DatabaseManagerService;
 
 import javafx.fxml.FXML;
@@ -17,9 +18,12 @@ public class SignInController {
     
     @FXML
     private TextField usernameField;
+
+    @FXML
+    private TextField emailField; 
     
     @FXML
-    private PasswordField passwordField;
+    private PasswordField passwordField; 
     
     @FXML
     private Label errorLabel;
@@ -36,24 +40,25 @@ public class SignInController {
     private void signIn(ActionEvent event) {
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
-        
+        String email = emailField.getText().trim();
+
         if (username.isEmpty() || password.isEmpty()) {
             showError("Username and password are required");
             return;
         }
         
-        boolean authenticated = DatabaseManagerService.verifyUser(username, password);
+        // boolean authenticated = AuthenticationService.verifyUser(username, password);
         
-        if (authenticated) {
-            try {
-                // Authentication successful, navigate to main application
-                App.setRoot("menu");
-            } catch (IOException e) {
-                showError("Error loading application: " + e.getMessage());
-            }
-        } else {
-            showError("Invalid username or password");
-        }
+        // if (authenticated) {
+        //     try {
+        //         // Authentication successful, navigate to main application
+        //         App.setRoot("menu");
+        //     } catch (IOException e) {
+        //         showError("Error loading application: " + e.getMessage());
+        //     }
+        // } else {
+        //     showError("Invalid username or password");
+        // }
     }
     
     private void showError(String message) {

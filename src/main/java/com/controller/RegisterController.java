@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.app.App;
+import com.service.AuthenticationService;
 import com.service.DatabaseManagerService;
 
 import javafx.event.ActionEvent;
@@ -59,26 +60,26 @@ public class RegisterController {
             return;
         }
         
-        // Try to register the user
-        try {
-            boolean success = DatabaseManagerService.registerUser(username, password);
-            if (success) {
-                showAlert("Registration Successful", 
-                        "User registered successfully",
-                        "You can now sign in with your credentials.", 
-                        AlertType.INFORMATION);
-                clearFields();
-                try {
-                    switchToSignIn();
-                } catch (IOException e) {
-                    showMessage("Error navigating to sign in: " + e.getMessage(), true);
-                }
-            } else {
-                showMessage("Registration failed. Username may already exist.", true);
-            }
-        } catch (SQLException e) {
-            showMessage("Database error: " + e.getMessage(), true);
-        }
+        // // Try to register the user
+        // try {
+        //     boolean success = AuthenticationService.registerUser(username, password);
+        //     if (success) {
+        //         showAlert("Registration Successful", 
+        //                 "User registered successfully",
+        //                 "You can now sign in with your credentials.", 
+        //                 AlertType.INFORMATION);
+        //         clearFields();
+        //         try {
+        //             switchToSignIn();
+        //         } catch (IOException e) {
+        //             showMessage("Error navigating to sign in: " + e.getMessage(), true);
+        //         }
+        //     } else {
+        //         showMessage("Registration failed. Username may already exist.", true);
+        //     }
+        // } catch (SQLException e) {
+        //     showMessage("Database error: " + e.getMessage(), true);
+        // }
     }
     
     private void clearFields() {
