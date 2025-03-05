@@ -1,10 +1,11 @@
 package com.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import com.app.App;
+import com.model.User;
 import com.service.AuthenticationService;
-import com.service.DatabaseManagerService;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -15,19 +16,16 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
 
 public class SignInController {
-    
+
     @FXML
     private TextField usernameField;
 
     @FXML
-    private TextField emailField; 
-    
-    @FXML
-    private PasswordField passwordField; 
-    
+    private PasswordField passwordField;
+
     @FXML
     private Label errorLabel;
-    
+
     @FXML
     private void initialize() {
         // Set default error message to empty
@@ -40,27 +38,30 @@ public class SignInController {
     private void signIn(ActionEvent event) {
         String username = usernameField.getText().trim();
         String password = passwordField.getText();
-        String email = emailField.getText().trim();
 
         if (username.isEmpty() || password.isEmpty()) {
             showError("Username and password are required");
             return;
         }
-        
-        // boolean authenticated = AuthenticationService.verifyUser(username, password);
-        
-        // if (authenticated) {
-        //     try {
-        //         // Authentication successful, navigate to main application
-        //         App.setRoot("menu");
-        //     } catch (IOException e) {
-        //         showError("Error loading application: " + e.getMessage());
-        //     }
-        // } else {
-        //     showError("Invalid username or password");
-        // }
+
+        try {
+            AuthenticationService authService = new AuthenticationService();
+            User user = authService.authenticateUser(username, password);
+
+            if (user != null) {
+                try {
+                    App.setRoot("book-list");
+                } catch (IOException e) {
+                    showError("Error loading application: " + e.getMessage());
+                }
+            } else {
+                showError("Invalid username or password");
+            }
+        } catch (SQLException e) {
+            showError("Database error: " + e.getMessage());
+        }
     }
-    
+
     private void showError(String message) {
         if (errorLabel != null) {
             errorLabel.setText(message);
@@ -73,7 +74,7 @@ public class SignInController {
             alert.showAndWait();
         }
     }
-    
+
     @FXML
     private void switchToRegister() throws IOException {
         App.setRoot("register");

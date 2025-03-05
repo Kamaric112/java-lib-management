@@ -4,35 +4,33 @@ import com.model.User;
 import java.sql.*;
 
 public class AuthenticationService {
-    
+
     /**
-     * Authenticates a user with provided email and password
+     * Authenticates a user with provided username and password
      * 
-     * @param email The user's email
+     * @param username The user's username'
      * @param password The user's password
      * @return User object if authentication succeeds, null otherwise
      * @throws SQLException if database error occurs
      */
-    public User authenticateUser(String email, String password) throws SQLException {
+    public User authenticateUser(String username, String password) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
-        String sql = "SELECT * FROM users WHERE email = ? AND password = ?";
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, email);
+            statement.setString(1, username);
             statement.setString(2, password);
-            
+
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 return new User(
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("password"),
-                    User.Role.valueOf(rs.getString("role"))
-                );
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        User.Role.valueOf(rs.getString("role")));
             }
             return null;
         }
     }
-    
+
     /**
      * Registers a new user in the system
      * 
@@ -42,19 +40,18 @@ public class AuthenticationService {
      */
     public int registerUser(User user) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
-        String sql = "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO users (name, password, role) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getEmail());
+            statement.setString(1, user.getUsername());
             statement.setString(3, user.getPassword());
             statement.setString(4, user.getRole().toString());
-            
+
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             return rs.next() ? rs.getInt(1) : -1;
         }
     }
-    
+
     /**
      * Gets a user by their ID
      * 
@@ -67,33 +64,31 @@ public class AuthenticationService {
         String sql = "SELECT * FROM users WHERE id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
-            
+
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 return new User(
-                    rs.getString("name"),
-                    rs.getString("email"),
-                    rs.getString("password"),
-                    User.Role.valueOf(rs.getString("role"))
-                );
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        User.Role.valueOf(rs.getString("role")));
             }
             return null;
         }
     }
-    
+
     /**
-     * Gets a user's ID by their email
+     * Gets a user's ID by their username
      * 
-     * @param email The user's email
+     * @param username The user's username
      * @return The user ID if found, -1 otherwise
      * @throws SQLException if database error occurs
      */
-    public int getUserIdByEmail(String email) throws SQLException {
+    public int getUserIdByUsername(String username) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
-        String sql = "SELECT id FROM users WHERE email = ?";
+        String sql = "SELECT id FROM users WHERE username = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, email);
-            
+            statement.setString(1, username);
+
             ResultSet rs = statement.executeQuery();
             return rs.next() ? rs.getInt("id") : -1;
         }

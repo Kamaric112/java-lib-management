@@ -12,10 +12,13 @@ public class MenuController {
 
     @FXML
     private Button bookListButton;
-    
+
     @FXML
     private Button signInButton;
-    
+
+    @FXML
+    private Button bookManagementButton;
+
     @FXML
     private Button exitButton;
 
@@ -23,7 +26,12 @@ public class MenuController {
     private void switchToBookList() throws IOException {
         App.setRoot("book-list");
     }
-    
+
+    @FXML
+    private void switchToBookManagement() throws IOException {
+        App.setRoot("book-management");
+    }
+
     @FXML
     private void switchToSignIn() throws IOException {
         App.setRoot("sign-in");
@@ -33,7 +41,7 @@ public class MenuController {
     private void switchToRegister() throws IOException {
         App.setRoot("register");
     }
-    
+
     @FXML
     private void exitApplication() {
         Platform.exit();

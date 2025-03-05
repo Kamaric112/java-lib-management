@@ -20,6 +20,9 @@
             styleClass="menu-button"/>
     <Button fx:id="registerButton" text="Register" onAction="#switchToRegister" 
         styleClass="menu-button"/>
+
+        <Button fx:id="bookManagementButton" text="Book Management" onAction="#switchToBookManagement" 
+        styleClass="menu-button"/>
     <Button fx:id="exitButton" text="Exit" onAction="#exitApplication" 
             styleClass="exit-button"/>
     
