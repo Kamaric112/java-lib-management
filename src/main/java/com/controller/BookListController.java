@@ -101,4 +101,30 @@ public class BookListController {
     private void switchToMenu() throws IOException {
         App.setRoot("menu");
     }
+
+    @FXML
+    private void deleteBook() {
+        Book selectedBook = bookListView.getSelectionModel().getSelectedItem();
+        if (selectedBook == null) {
+            showError("Please select a book to delete.");
+            return;
+        }
+
+        try {
+            BookService.deleteBook(selectedBook.getId());
+            System.out.println(selectedBook.getId());
+            loadBooks();
+            showAlert("Book deleted successfully.");
+        } catch (SQLException e) {
+            showError("Error deleting book: " + e.getMessage());
+        }
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }

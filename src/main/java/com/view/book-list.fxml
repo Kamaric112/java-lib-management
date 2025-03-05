@@ -27,6 +27,7 @@
     <HBox spacing="10" alignment="CENTER">
         <Button text="Refresh" onAction="#refreshBookList" styleClass="menu-button"/>
         <Button text="Book Management" onAction="#switchToBookManagement" styleClass="menu-button"/>
+         <Button text="Delete Book" onAction="#deleteBook" styleClass="menu-button"/>
     </HBox>
     
     <Button text="Back to Menu" onAction="#switchToMenu" styleClass="menu-button"/>
