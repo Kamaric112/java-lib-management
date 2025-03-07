@@ -17,7 +17,7 @@ public class AuthenticationService {
 
     /**
      * Authenticates a user with provided username and password
-     * 
+     *
      * @param username The user's username'
      * @param password The user's password
      * @return User object if authentication succeeds, null otherwise
@@ -33,6 +33,7 @@ public class AuthenticationService {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 currentUser = new User( // Set current user upon successful auth
+                        rs.getInt("id"),
                         rs.getString("username"),
                         rs.getString("password"),
                         User.Role.valueOf(rs.getString("role")));
@@ -44,7 +45,7 @@ public class AuthenticationService {
 
     /**
      * Registers a new user in the system
-     * 
+     *
      * @param user The user to register
      * @return The ID of the newly registered user
      * @throws SQLException if database error occurs
@@ -65,7 +66,7 @@ public class AuthenticationService {
 
     /**
      * Gets a user by their ID
-     * 
+     *
      * @param id The user ID
      * @return User object if found, null otherwise
      * @throws SQLException if database error occurs
@@ -79,6 +80,7 @@ public class AuthenticationService {
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 return new User(
+                        rs.getInt("id"),
                         rs.getString("username"),
                         rs.getString("password"),
                         User.Role.valueOf(rs.getString("role")));
@@ -89,7 +91,7 @@ public class AuthenticationService {
 
     /**
      * Gets a user's ID by their username
-     * 
+     *
      * @param username The user's username
      * @return The user ID if found, -1 otherwise
      * @throws SQLException if database error occurs

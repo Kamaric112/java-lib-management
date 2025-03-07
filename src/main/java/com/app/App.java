@@ -23,7 +23,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         // Try to connect to the database
         boolean connected = DatabaseManagerService.connect();
-        
+
         // Show connection status message
         if (connected) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -35,10 +35,11 @@ public class App extends Application {
             Alert alert = new Alert(AlertType.ERROR);
             alert.setTitle("Database Status");
             alert.setHeaderText("Database Connection Failed");
-            alert.setContentText("Failed to connect to the SQLite database. The application may not function correctly.");
+            alert.setContentText(
+                    "Failed to connect to the SQLite database. The application may not function correctly.");
             alert.showAndWait();
         }
-        
+
         scene = new Scene(loadFXML("menu"), 640, 480);
         stage.setTitle("Library Management System");
         stage.setScene(scene);
@@ -56,7 +57,9 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/com/view/" + fxml + ".fxml"));
+        String resourcePath = "/com/view/" + fxml + ".fxml";
+        System.out.println("Loading FXML from: " + resourcePath);
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(resourcePath));
         return fxmlLoader.load();
     }
 

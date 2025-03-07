@@ -6,6 +6,7 @@ import com.model.User; // Import User model
 import com.app.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.application.Platform;
 
 public class MenuController {
@@ -27,6 +28,8 @@ public class MenuController {
 
     @FXML
     private Button exitButton;
+    @FXML
+    private Label currentUserLabel;
 
     @FXML
     public void initialize() {
@@ -36,10 +39,13 @@ public class MenuController {
     private void updateMenuVisibility() {
         User currentUser = AuthenticationService.getCurrentUser();
         if (currentUser != null) {
+            currentUserLabel.setText(String.format("User ID: %d, Username: %s, Role: %s",
+                    currentUser.getId(), currentUser.getUsername(), currentUser.getRole()));
             signInButton.setVisible(false);
             registerButton.setVisible(false);
             signOutButton.setVisible(true);
         } else {
+            currentUserLabel.setText("Not logged in"); // Clear user info when no user is logged in
             signInButton.setVisible(true);
             registerButton.setVisible(true);
             signOutButton.setVisible(false);

@@ -13,6 +13,7 @@
     </padding>
     
     <Label text="Main Menu" styleClass="title-label"/>
+    <Label fx:id="currentUserLabel" text="" styleClass="user-label"/>
     
     <Button fx:id="bookListButton" text="Book List" onAction="#switchToBookList" 
             styleClass="menu-button"/>
