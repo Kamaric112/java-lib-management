@@ -25,6 +25,9 @@
         
         <Label text="Publication Year:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
         <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        
+        <Label text="Genre:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <TextField fx:id="genreField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
     </GridPane>
     
     <HBox spacing="10" alignment="CENTER">

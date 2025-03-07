@@ -27,6 +27,9 @@ public class BookManagementController {
   private TextField yearField;
 
   @FXML
+  private TextField genreField;
+
+  @FXML
   private void addBook() {
     // Validate input
     if (titleField.getText().trim().isEmpty() ||
@@ -55,7 +58,8 @@ public class BookManagementController {
         titleField.getText().trim(),
         authorField.getText().trim(),
         isbnField.getText().trim(),
-        year);
+        year,
+        genreField.getText().trim());
 
     try {
       int bookId = BookService.addBook(book);
@@ -79,6 +83,7 @@ public class BookManagementController {
     authorField.clear();
     isbnField.clear();
     yearField.clear();
+    genreField.clear();
   }
 
   private void showAlert(String title, String header, String content, AlertType type) {
