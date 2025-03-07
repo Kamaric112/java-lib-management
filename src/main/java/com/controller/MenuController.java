@@ -21,7 +21,7 @@ public class MenuController {
     private Button signInButton;
 
     @FXML
-    private Button registerButton; // Need to get reference to registerButton
+    private Button registerButton;
 
     @FXML
     private Button bookManagementButton;

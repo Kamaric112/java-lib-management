@@ -50,7 +50,7 @@ public class SignInController {
 
             if (user != null) {
                 try {
-                    App.setRoot("book-list");
+                    App.setRoot("menu");
                 } catch (IOException e) {
                     showError("Error loading application: " + e.getMessage());
                 }
