@@ -6,6 +6,7 @@ public class Book {
     private String isbn;
     private int publicationYear;
     private boolean available;
+    private String genre;
     private int id;
 
     public Book() {
@@ -14,17 +15,19 @@ public class Book {
 
     /**
      * Parameterized constructor.
-     * 
+     *
      * @param title           The book's title
      * @param author          The book's author
      * @param isbn            The book's ISBN
      * @param publicationYear The book's publication year
+     * @param genre           The book's genre
      */
-    public Book(String title, String author, String isbn, int publicationYear) {
+    public Book(String title, String author, String isbn, int publicationYear, String genre) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
         this.publicationYear = publicationYear;
+        this.genre = genre;
         this.available = true;
     }
 
@@ -60,6 +63,14 @@ public class Book {
         this.publicationYear = publicationYear;
     }
 
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+
     public boolean isAvailable() {
         return available;
     }
@@ -89,6 +100,7 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", publicationYear=" + publicationYear +
                 ", available=" + available +
+                ", genre='" + genre + '\'' +
                 '}';
     }
 

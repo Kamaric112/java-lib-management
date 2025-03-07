@@ -12,7 +12,14 @@
     </padding>
     
     <Label text="Book List" styleClass="title-label"/>
-    
+
+    <!-- Genre filter ComboBox -->
+    <ComboBox fx:id="genreComboBox" promptText="Filter by Genre" styleClass="genre-combobox">
+        <VBox.margin>
+            <Insets bottom="10.0"/>
+        </VBox.margin>
+    </ComboBox>
+
     <!-- ListView for displaying books -->
     <ListView fx:id="bookListView" VBox.vgrow="ALWAYS" prefHeight="300.0"/>
     

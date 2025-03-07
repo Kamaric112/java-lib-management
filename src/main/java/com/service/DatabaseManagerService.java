@@ -32,6 +32,7 @@ public class DatabaseManagerService {
                             "author TEXT NOT NULL, " +
                             "isbn TEXT UNIQUE, " +
                             "publication_year INTEGER, " +
+                            "genre TEXT, " +
                             "available INTEGER DEFAULT 1" +
                             ")");
 

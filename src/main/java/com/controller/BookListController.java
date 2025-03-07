@@ -11,6 +11,7 @@ import com.service.BookService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ListCell;
@@ -27,19 +28,22 @@ public class BookListController {
     private Label availableBooksLabel;
 
     @FXML
+    private ComboBox<String> genreComboBox;
+
+    @FXML
     private void initialize() {
-        loadBooks();
+        loadGenres();
+        loadBooks(); // Load all books initially
     }
 
     @FXML
     private void refreshBookList() {
-        loadBooks();
+        loadBooks(); // Load all books initially
     }
 
     private void loadBooks() {
         try {
             List<Book> books = BookService.getAllBooks();
-
             if (books.isEmpty()) {
                 addSampleBooks();
                 books = BookService.getAllBooks();
@@ -72,13 +76,65 @@ public class BookListController {
         }
     }
 
+    private void loadGenres() {
+        genreComboBox.getItems().addAll("Fiction", "Science Fiction", "Romance"); // Add sample genres
+        genreComboBox.setOnAction(e -> {
+            String selectedGenre = genreComboBox.getValue();
+            if (selectedGenre != null && !selectedGenre.isEmpty()) {
+                loadBooksByGenre(selectedGenre);
+            } else {
+                loadBooks(); // Load all books if no genre selected
+            }
+        });
+    }
+
+    // New method to load books by genre
+    private void loadBooksByGenre(String genre) {
+        try {
+            List<Book> books = BookService.filterBooksByGenre(genre); // Get books by genre
+
+            if (books.isEmpty()) {
+                bookListView.getItems().clear(); // Clear list if no books for genre
+                totalBooksLabel.setText("0");
+                availableBooksLabel.setText("0");
+                showError("No books found for genre: " + genre); // Inform user if no books for genre
+                return; // Exit to prevent further processing with empty list
+            }
+
+            bookListView.getItems().clear();
+            bookListView.getItems().addAll(books);
+
+            int totalBooks = books.size();
+            int availableBooks = (int) books.stream().filter(Book::isAvailable).count();
+
+            totalBooksLabel.setText(String.valueOf(totalBooks));
+            availableBooksLabel.setText(String.valueOf(availableBooks));
+
+            bookListView.setCellFactory(param -> new ListCell<Book>() {
+                @Override
+                protected void updateItem(Book book, boolean empty) {
+                    super.updateItem(book, empty);
+                    if (empty || book == null) {
+                        setText(null);
+                    } else {
+                        setText(book.getTitle() + " by " + book.getAuthor() +
+                                " (" + book.getPublicationYear() + ")" +
+                                (book.isAvailable() ? " - Available" : " - Checked Out"));
+                    }
+                }
+            });
+        } catch (SQLException e) {
+            showError("Error loading books by genre: " + e.getMessage()); // Updated error message
+        }
+    }
+
     private void addSampleBooks() {
         try {
-            BookService.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", 1925));
-            BookService.addBook(new Book("To Kill a Mockingbird", "Harper Lee", "9780061120084", 1960));
-            BookService.addBook(new Book("1984", "George Orwell", "9780451524935", 1949));
-            BookService.addBook(new Book("The Catcher in the Rye", "J.D. Salinger", "9780316769488", 1951));
-            BookService.addBook(new Book("Pride and Prejudice", "Jane Austen", "9780141439518", 1813));
+            BookService.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", 1925, "Fiction"));
+            BookService.addBook(new Book("To Kill a Mockingbird", "Harper Lee", "9780061120084", 1960, "Fiction"));
+            BookService.addBook(new Book("1984", "George Orwell", "9780451524935", 1949, "Science Fiction"));
+            BookService.addBook(new Book("The Catcher in the Rye", "J.D. Salinger", "9780316769488", 1951, "Fiction"));
+            BookService.addBook(new Book("Pride and Prejudice", "Jane Austen", "9780141439518", 1813, "Romance"));
         } catch (SQLException e) {
             showError("Error adding sample books: " + e.getMessage());
         }
@@ -107,16 +163,14 @@ public class BookListController {
         Book selectedBook = bookListView.getSelectionModel().getSelectedItem();
         if (selectedBook == null) {
             showError("Please select a book to delete.");
-            return;
-        }
-
-        try {
-            BookService.deleteBook(selectedBook.getId());
-            System.out.println(selectedBook.getId());
-            loadBooks();
-            showAlert("Book deleted successfully.");
-        } catch (SQLException e) {
-            showError("Error deleting book: " + e.getMessage());
+        } else {
+            try {
+                BookService.deleteBook(selectedBook.getId());
+                loadBooks(); // Refresh with all books
+                showAlert("Book deleted successfully.");
+            } catch (SQLException e) {
+                showError("Error deleting book: " + e.getMessage());
+            }
         }
     }
 

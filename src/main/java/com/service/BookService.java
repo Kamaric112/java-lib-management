@@ -13,20 +13,21 @@ public class BookService {
 
     /**
      * Adds a new book to the database.
-     * 
+     *
      * @param book the book to add
      * @return the ID of the newly added book, or -1 if operation failed
      * @throws SQLException if a database error occurs
      */
     public static int addBook(Book book) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
-        String sql = "INSERT INTO books (title, author, isbn, publication_year, available) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO books (title, author, isbn, publication_year, available, genre) VALUES (?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, book.getTitle());
             statement.setString(2, book.getAuthor());
             statement.setString(3, book.getIsbn());
             statement.setInt(4, book.getPublicationYear());
             statement.setInt(5, book.isAvailable() ? 1 : 0);
+            statement.setString(6, book.getGenre());
 
             statement.executeUpdate();
             ResultSet rs = connection.createStatement().executeQuery("SELECT last_insert_rowid()");
@@ -36,7 +37,7 @@ public class BookService {
 
     /**
      * Updates an existing book in the database.
-     * 
+     *
      * @param id   the ID of the book to update
      * @param book the book object with updated information
      * @return true if the book was updated successfully
@@ -59,7 +60,7 @@ public class BookService {
 
     /**
      * Retrieves a book by its ID.
-     * 
+     *
      * @param id the ID of the book to retrieve
      * @return the book object if found, null otherwise
      * @throws SQLException if a database error occurs
@@ -76,7 +77,8 @@ public class BookService {
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getString("isbn"),
-                        rs.getInt("publication_year"));
+                        rs.getInt("publication_year"),
+                        rs.getString("genre")); // Added genre here
                 book.setAvailable(rs.getInt("available") == 1);
                 return book;
             }
@@ -86,7 +88,7 @@ public class BookService {
 
     /**
      * Retrieves all books from the database.
-     * 
+     *
      * @return a list of all books
      * @throws SQLException if a database error occurs
      */
@@ -102,7 +104,8 @@ public class BookService {
                         rs.getString("title"),
                         rs.getString("author"),
                         rs.getString("isbn"),
-                        rs.getInt("publication_year"));
+                        rs.getInt("publication_year"),
+                        rs.getString("genre")); // Added genre here
                 book.setId(rs.getInt("id"));
                 book.setAvailable(rs.getInt("available") == 1);
                 books.add(book);
@@ -113,7 +116,7 @@ public class BookService {
 
     /**
      * Deletes a book from the database.
-     * 
+     *
      * @param id the ID of the book to delete
      * @return true if the book was deleted successfully
      * @throws SQLException if a database error occurs
@@ -129,7 +132,7 @@ public class BookService {
 
     /**
      * Updates the availability status of a book.
-     * 
+     *
      * @param bookId    the ID of the book
      * @param available the new availability status
      * @return true if the operation was successful
@@ -143,5 +146,34 @@ public class BookService {
             statement.setInt(2, bookId);
             return statement.executeUpdate() > 0;
         }
+    }
+
+    /**
+     * Filters books by genre.
+     *
+     * @param genre The genre to filter by.
+     * @return A list of books matching the genre.
+     * @throws SQLException if a database error occurs.
+     */
+    public static List<Book> filterBooksByGenre(String genre) throws SQLException {
+        Connection connection = DatabaseManagerService.getConnection();
+        List<Book> books = new ArrayList<>();
+        String sql = "SELECT * FROM books WHERE genre = ?";
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, genre);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                Book book = new Book(
+                        rs.getString("title"),
+                        rs.getString("author"),
+                        rs.getString("isbn"),
+                        rs.getInt("publication_year"),
+                        rs.getString("genre"));
+                book.setId(rs.getInt("id"));
+                book.setAvailable(rs.getInt("available") == 1);
+                books.add(book);
+            }
+        }
+        return books;
     }
 }
