@@ -49,9 +49,9 @@ public class DatabaseManagerService {
                             "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                             "user_id INTEGER NOT NULL, " +
                             "book_id INTEGER NOT NULL, " +
-                            "loan_date TEXT NOT NULL, " +
-                            "due_date TEXT NOT NULL, " +
-                            "return_date TEXT, " +
+                            "loan_date DATE NOT NULL, " +
+                            "due_date DATE NOT NULL, " +
+                            "return_date DATE, " +
                             "active INTEGER DEFAULT 1, " +
                             "FOREIGN KEY (user_id) REFERENCES users (id), " +
                             "FOREIGN KEY (book_id) REFERENCES books (id)" +
