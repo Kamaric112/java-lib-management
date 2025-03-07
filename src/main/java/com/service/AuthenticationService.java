@@ -5,6 +5,16 @@ import java.sql.*;
 
 public class AuthenticationService {
 
+    private static User currentUser; // Static field to store current user
+
+    public static User getCurrentUser() {
+        return currentUser;
+    }
+
+    public static void signOut() {
+        currentUser = null;
+    }
+
     /**
      * Authenticates a user with provided username and password
      * 
@@ -22,10 +32,11 @@ public class AuthenticationService {
 
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                return new User(
+                currentUser = new User( // Set current user upon successful auth
                         rs.getString("username"),
                         rs.getString("password"),
                         User.Role.valueOf(rs.getString("role")));
+                return currentUser;
             }
             return null;
         }
