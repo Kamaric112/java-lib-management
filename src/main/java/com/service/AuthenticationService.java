@@ -40,14 +40,14 @@ public class AuthenticationService {
      */
     public int registerUser(User user) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
-        String sql = "INSERT INTO users (name, password, role) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, user.getUsername());
-            statement.setString(3, user.getPassword());
-            statement.setString(4, user.getRole().toString());
+            statement.setString(2, user.getPassword());
+            statement.setString(3, user.getRole().toString());
 
             statement.executeUpdate();
-            ResultSet rs = statement.getGeneratedKeys();
+            ResultSet rs = connection.createStatement().executeQuery("SELECT last_insert_rowid()");
             return rs.next() ? rs.getInt(1) : -1;
         }
     }
