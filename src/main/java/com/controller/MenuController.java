@@ -27,6 +27,9 @@ public class MenuController {
     private Button bookManagementButton;
 
     @FXML
+    private Button loanManagementButton;
+
+    @FXML
     private Button exitButton;
     @FXML
     private Label currentUserLabel;
@@ -60,6 +63,11 @@ public class MenuController {
     @FXML
     private void switchToBookManagement() throws IOException {
         App.setRoot("book-management");
+    }
+
+    @FXML
+    private void switchToLoanManagement() throws IOException {
+        App.setRoot("loan-management");
     }
 
     @FXML

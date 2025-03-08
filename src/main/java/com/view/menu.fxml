@@ -24,6 +24,8 @@
 
         <Button fx:id="bookManagementButton" text="Book Management" onAction="#switchToBookManagement"
             styleClass="menu-button"/>
+        <Button fx:id="loanManagementButton" text="Loan Management" onAction="#switchToLoanManagement"
+                styleClass="menu-button"/>
         <Button fx:id="signOutButton" text="Sign Out" onAction="#signOut"
                 styleClass="menu-button"/>
         <Button fx:id="exitButton" text="Exit" onAction="#exitApplication"
