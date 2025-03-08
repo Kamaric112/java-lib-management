@@ -24,6 +24,12 @@ public class LoanService {
      */
     public static int createLoan(int userId, int bookId, LocalDate loanDate, LocalDate dueDate) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
+
+        // Check book availability first
+        if (!BookService.isBookAvailable(bookId)) {
+            return -2; // Return -2 to indicate book not available
+        }
+
         String sql = "INSERT INTO loans (user_id, book_id, loan_date, due_date, active) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setInt(1, userId);
