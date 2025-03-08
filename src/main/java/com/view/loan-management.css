@@ -1,0 +1,45 @@
+/* src/main/java/com/view/loan-management.css */
+
+.vbox {
+  -fx-padding: 20px;
+  -fx-spacing: 20px;
+}
+
+.grid-pane {
+  -fx-padding: 10px;
+  -fx-vgap: 10px;
+  -fx-hgap: 10px;
+}
+
+.label {
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+}
+
+.combo-box {
+  -fx-min-width: 150px;
+}
+
+.date-picker {
+  -fx-min-width: 150px;
+}
+
+.button {
+  -fx-padding: 10px 20px;
+  -fx-font-size: 14px;
+  -fx-background-color: #007bff;
+  -fx-text-fill: white;
+  -fx-cursor: hand;
+}
+
+.button:hover {
+  -fx-background-color: #0056b3;
+}
+
+.table-view {
+  -fx-pref-height: 300px;
+}
+
+.table-column {
+  -fx-alignment: CENTER;
+}

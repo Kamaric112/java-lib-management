@@ -73,4 +73,14 @@ public class User {
   public String toString() {
     return "User [username=" + username + ", role=" + role + "]";
   }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public User(int id, String username, Role role) {
+    this.id = id;
+    this.username = username;
+    this.role = role;
+  }
 }

@@ -9,22 +9,22 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
 
 <VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.controller.LoanManagementController"  stylesheets="@menu.css" styleClass="main-container">
+      fx:controller="com.controller.LoanManagementController"  stylesheets="@loan-management.css" >
     <Label text="Loan Book Form"/>
-        <Button text="Back to Menu" onAction="#switchToMenu" styleClass="menu-button"/>
-
     <GridPane vgap="10" hgap="10">
         <padding>
             <Insets top="10" right="10" bottom="10" left="10"/>
         </padding>
 
         <Label text="User ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-        <TextField fx:id="userIdField" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <ComboBox fx:id="userIdComboBox" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
         <Label text="Book ID:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="bookIdField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <ComboBox fx:id="bookIdComboBox" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
 
         <Label text="Loan Date:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
         <DatePicker fx:id="loanDateField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
@@ -35,8 +35,15 @@
         <Button text="Loan Book" onAction="#handleLoanBook" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
     </GridPane>
 
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+        <Button fx:id="deleteLoanButton" text="Delete Loan" onAction="#handleDeleteLoan" disable="true"/>
+    </HBox>
+
     <Label text="Loaned Books Table"/>
-    <TableView fx:id="loanedBooksTable">
+    <TableView fx:id="loanedBooksTable" onMouseClicked="#handleLoanTableClick">
         <columns>
             <TableColumn fx:id="loanIdColumn" text="Loan ID"/>
             <TableColumn fx:id="userIdColumn" text="User ID"/>
@@ -47,4 +54,11 @@
             <TableColumn fx:id="activeColumn" text="Active"/>
         </columns>
     </TableView>
+
+    <HBox spacing="10" alignment="CENTER">
+        <padding>
+            <Insets top="20" right="10" bottom="10" left="10"/>
+        </padding>
+        <Button text="Back to Menu" onAction="#switchToMenu" styleClass="menu-button"/>
+    </HBox>
 </VBox>

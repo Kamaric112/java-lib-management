@@ -176,4 +176,31 @@ public class LoanService {
         }
         return loans;
     }
+
+    /**
+     * Deletes a loan record from the database and updates book availability.
+     *
+     * @param loanId the ID of the loan to delete
+     * @return true if the loan was successfully deleted
+     * @throws SQLException if a database error occurs
+     */
+    public static boolean deleteLoan(int loanId) throws SQLException {
+        Connection connection = DatabaseManagerService.getConnection();
+        String sql = "DELETE FROM loans WHERE id = ?";
+
+        Loan loan = getLoanById(loanId); // Get loan to update book availability later
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setInt(1, loanId);
+            int result = statement.executeUpdate();
+            if (result > 0) {
+                // Update book availability to true since loan is deleted
+                if (loan != null) {
+                    BookService.updateBookAvailability(loan.getBookId(), true);
+                }
+                return true;
+            }
+            return false;
+        }
+    }
 }
