@@ -77,28 +77,27 @@ public class BookListController {
     }
 
     private void loadGenres() {
-        genreComboBox.getItems().addAll("Fiction", "Science Fiction", "Romance"); // Add sample genres
+        genreComboBox.getItems().addAll("Fiction", "Science Fiction", "Romance");
         genreComboBox.setOnAction(e -> {
             String selectedGenre = genreComboBox.getValue();
             if (selectedGenre != null && !selectedGenre.isEmpty()) {
                 loadBooksByGenre(selectedGenre);
             } else {
-                loadBooks(); // Load all books if no genre selected
+                loadBooks();
             }
         });
     }
 
-    // New method to load books by genre
     private void loadBooksByGenre(String genre) {
         try {
-            List<Book> books = BookService.filterBooksByGenre(genre); // Get books by genre
+            List<Book> books = BookService.filterBooksByGenre(genre);
 
             if (books.isEmpty()) {
-                bookListView.getItems().clear(); // Clear list if no books for genre
+                bookListView.getItems().clear();
                 totalBooksLabel.setText("0");
                 availableBooksLabel.setText("0");
-                showError("No books found for genre: " + genre); // Inform user if no books for genre
-                return; // Exit to prevent further processing with empty list
+                showError("No books found for genre: " + genre);
+                return;
             }
 
             bookListView.getItems().clear();

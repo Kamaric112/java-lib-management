@@ -12,19 +12,14 @@ import java.io.IOException;
 
 import com.service.DatabaseManagerService;
 
-/**
- * JavaFX App
- */
 public class App extends Application {
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Try to connect to the database
         boolean connected = DatabaseManagerService.connect();
 
-        // Show connection status message
         if (connected) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Database Status");
@@ -48,7 +43,6 @@ public class App extends Application {
 
     @Override
     public void stop() {
-        // Close database connection when application exits
         DatabaseManagerService.disconnect();
     }
 

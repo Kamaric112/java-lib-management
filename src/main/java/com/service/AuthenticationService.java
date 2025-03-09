@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class AuthenticationService {
 
-    private static User currentUser; // Static field to store current user
+    private static User currentUser;
 
     public static User getCurrentUser() {
         return currentUser;
@@ -15,14 +15,6 @@ public class AuthenticationService {
         currentUser = null;
     }
 
-    /**
-     * Authenticates a user with provided username and password
-     *
-     * @param username The user's username'
-     * @param password The user's password
-     * @return User object if authentication succeeds, null otherwise
-     * @throws SQLException if database error occurs
-     */
     public User authenticateUser(String username, String password) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
@@ -32,7 +24,7 @@ public class AuthenticationService {
 
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
-                currentUser = new User( // Set current user upon successful auth
+                currentUser = new User(
                         rs.getInt("id"),
                         rs.getString("username"),
                         rs.getString("password"),
@@ -43,13 +35,6 @@ public class AuthenticationService {
         }
     }
 
-    /**
-     * Registers a new user in the system
-     *
-     * @param user The user to register
-     * @return The ID of the newly registered user
-     * @throws SQLException if database error occurs
-     */
     public int registerUser(User user) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
         String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
@@ -64,13 +49,6 @@ public class AuthenticationService {
         }
     }
 
-    /**
-     * Gets a user by their ID
-     *
-     * @param id The user ID
-     * @return User object if found, null otherwise
-     * @throws SQLException if database error occurs
-     */
     public User getUserById(int id) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
         String sql = "SELECT * FROM users WHERE id = ?";
@@ -89,13 +67,6 @@ public class AuthenticationService {
         }
     }
 
-    /**
-     * Gets a user's ID by their username
-     *
-     * @param username The user's username
-     * @return The user ID if found, -1 otherwise
-     * @throws SQLException if database error occurs
-     */
     public int getUserIdByUsername(String username) throws SQLException {
         Connection connection = DatabaseManagerService.getConnection();
         String sql = "SELECT id FROM users WHERE username = ?";

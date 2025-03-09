@@ -13,15 +13,6 @@ public class Book {
         this.available = true;
     }
 
-    /**
-     * Parameterized constructor.
-     *
-     * @param title           The book's title
-     * @param author          The book's author
-     * @param isbn            The book's ISBN
-     * @param publicationYear The book's publication year
-     * @param genre           The book's genre
-     */
     public Book(String title, String author, String isbn, int publicationYear, String genre) {
         this.title = title;
         this.author = author;

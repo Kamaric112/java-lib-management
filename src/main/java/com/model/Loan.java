@@ -1,17 +1,16 @@
 package com.model;
-import java.time.LocalDate;
 
+import java.time.LocalDate;
 
 public class Loan {
     private int id;
-    private int userId;       
-    private int bookId;       
+    private int userId;
+    private int bookId;
     private LocalDate loanDate;
     private LocalDate dueDate;
     private LocalDate returnDate;
     private boolean active;
-    Long DAYS_TO_ADD=7L;
-
+    Long DAYS_TO_ADD = 7L;
 
     public Loan() {
         this.loanDate = LocalDate.now();
@@ -19,12 +18,6 @@ public class Loan {
         this.active = true;
     }
 
-    /**
-     * Constructor for creating a new loan
-     * 
-     * @param userId The ID of the borrowing user
-     * @param bookId The ID of the book being borrowed
-     */
     public Loan(int userId, int bookId) {
         this.userId = userId;
         this.bookId = bookId;
@@ -36,16 +29,16 @@ public class Loan {
     /**
      * Full constructor
      * 
-     * @param id The loan ID
-     * @param userId The user ID
-     * @param bookId The book ID
-     * @param loanDate The date the book was loaned
-     * @param dueDate The date the book is due
+     * @param id         The loan ID
+     * @param userId     The user ID
+     * @param bookId     The book ID
+     * @param loanDate   The date the book was loaned
+     * @param dueDate    The date the book is due
      * @param returnDate The date the book was returned (can be null)
-     * @param active Whether the loan is still active
+     * @param active     Whether the loan is still active
      */
-    public Loan(int id, int userId, int bookId, LocalDate loanDate, LocalDate dueDate, 
-                LocalDate returnDate, boolean active) {
+    public Loan(int id, int userId, int bookId, LocalDate loanDate, LocalDate dueDate,
+            LocalDate returnDate, boolean active) {
         this.id = id;
         this.userId = userId;
         this.bookId = bookId;
