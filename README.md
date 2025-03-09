@@ -30,11 +30,9 @@ To run the Library Management System, you need to have the following installed:
 1.  **Clone the repository:**
 
     ```bash
-    git clone [repository URL]
+    git clone https://github.com/Kamaric112/java-lib-management
     cd java-lib-management
     ```
-
-    _(Replace `[repository URL]` with the actual repository URL once it's available)_
 
 2.  **Build the project using Maven:**
 
