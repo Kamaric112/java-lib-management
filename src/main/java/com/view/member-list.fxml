@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" spacing="20.0" stylesheets="@member-list.css"
+      xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8" fx:controller="com.controller.MemberListController">
+    
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <Label text="Team Members" styleClass="title"/>
+
+    <VBox spacing="10.0" styleClass="member-list" alignment="CENTER">
+        <VBox.margin>
+            <Insets top="10.0" bottom="10.0"/>
+        </VBox.margin>
+        <Label text="Nguyễn Quang Trường - 23210303" styleClass="member-item" alignment="CENTER"/>
+        <Label text="Nguyễn Hữu Nhật - 23210258 " styleClass="member-item" alignment="CENTER"/>
+        <Label text="Trần Quang Kiên - 23210232" styleClass="member-item" alignment="CENTER"/>
+        <Label text="Nguyễn Văn Minh Trí  - 23210299" styleClass="member-item" alignment="CENTER"/>
+    </VBox>
+ <Button text="Back to Menu" onAction="#switchToMenu" styleClass="menu-button"/>
+
+</VBox>

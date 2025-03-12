@@ -13,6 +13,8 @@
     </padding>
     
     <Label text="Main Menu" styleClass="title-label"/>
+    <Button fx:id="exitButton" text="Exit" onAction="#exitApplication"
+            styleClass="exit-button"/>
     <Label fx:id="currentUserLabel" text="" styleClass="user-label"/>
     
     <Button fx:id="bookListButton" text="Book List" onAction="#switchToBookList" 
@@ -22,14 +24,14 @@
     <Button fx:id="registerButton" text="Register" onAction="#switchToRegister" 
         styleClass="menu-button"/>
 
-        <Button fx:id="bookManagementButton" text="Book Management" onAction="#switchToBookManagement"
+    <Button fx:id="bookManagementButton" text="Book Management" onAction="#switchToBookManagement"
             styleClass="menu-button"/>
-        <Button fx:id="loanManagementButton" text="Loan Management" onAction="#switchToLoanManagement"
-                styleClass="menu-button"/>
-        <Button fx:id="signOutButton" text="Sign Out" onAction="#signOut"
-                styleClass="menu-button"/>
-        <Button fx:id="exitButton" text="Exit" onAction="#exitApplication"
-                styleClass="exit-button"/>
+    <Button fx:id="loanManagementButton" text="Loan Management" onAction="#switchToLoanManagement"
+            styleClass="menu-button"/>
+    <Button fx:id="teamMembersButton" text="Team Members" onAction="#switchToTeamMembers"
+            styleClass="menu-button"/>
+    <Button fx:id="signOutButton" text="Sign Out" onAction="#signOut"
+            styleClass="menu-button"/>
     
     <stylesheets>
         <URL value="@menu.css" />

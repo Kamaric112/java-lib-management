@@ -30,6 +30,9 @@ public class MenuController {
     private Button loanManagementButton;
 
     @FXML
+    private Button teamMembersButton;
+
+    @FXML
     private Button exitButton;
     @FXML
     private Label currentUserLabel;
@@ -78,6 +81,11 @@ public class MenuController {
     @FXML
     private void switchToRegister() throws IOException {
         App.setRoot("register");
+    }
+
+    @FXML
+    private void switchToTeamMembers() throws IOException {
+        App.setRoot("member-list");
     }
 
     @FXML
