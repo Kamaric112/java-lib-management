@@ -35,9 +35,11 @@ public class App extends Application {
             alert.showAndWait();
         }
 
-        scene = new Scene(loadFXML("menu"), 640, 480);
+        scene = new Scene(loadFXML("menu"), 1024, 768);
         stage.setTitle("Library Management System");
         stage.setScene(scene);
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
         stage.show();
     }
 

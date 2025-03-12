@@ -11,7 +11,19 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     
-    <Label text="Book List" styleClass="title-label"/>
+    <Label text="Book Management" styleClass="title-label"/>
+    
+    <TableView fx:id="bookTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="idColumn" text="ID" />
+            <TableColumn fx:id="titleColumn" text="Title" />
+            <TableColumn fx:id="authorColumn" text="Author" />
+            <TableColumn fx:id="isbnColumn" text="ISBN" />
+            <TableColumn fx:id="yearColumn" text="Year" />
+            <TableColumn fx:id="genreColumn" text="Genre" />
+            <TableColumn fx:id="availableColumn" text="Available" />
+        </columns>
+    </TableView>
     
     <GridPane vgap="10" hgap="10" alignment="CENTER">
         <Label text="Title:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
@@ -31,7 +43,9 @@
     </GridPane>
     
     <HBox spacing="10" alignment="CENTER">
-        <Button text="Add Book" onAction="#addBook" styleClass="menu-button"/>
+        <Button fx:id="addButton" text="Add Book" onAction="#addBook" styleClass="menu-button"/>
+        <Button fx:id="editButton" text="Save Changes" onAction="#saveBookChanges" styleClass="menu-button"/>
+        <Button fx:id="cancelButton" text="Cancel Edit" onAction="#cancelEdit" styleClass="menu-button"/>
         <Button text="Clear" onAction="#clearFields" styleClass="menu-button"/>
     </HBox>
     
