@@ -28,6 +28,8 @@
             styleClass="menu-button"/>
     <Button fx:id="loanManagementButton" text="Loan Management" onAction="#switchToLoanManagement"
             styleClass="menu-button"/>
+    <Button fx:id="userManagementButton" text="User Management" onAction="#switchToUserManagement"
+            styleClass="menu-button"/>
     <Button fx:id="teamMembersButton" text="Team Members" onAction="#switchToTeamMembers"
             styleClass="menu-button"/>
     <Button fx:id="signOutButton" text="Sign Out" onAction="#signOut"

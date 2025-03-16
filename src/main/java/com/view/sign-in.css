@@ -1,0 +1,54 @@
+@import "menu.css";
+
+.login-container {
+  -fx-background-color: white;
+  -fx-padding: 30px;
+  -fx-spacing: 15px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
+  -fx-max-width: 400px;
+}
+
+.login-title {
+  -fx-font-size: 28px;
+  -fx-font-weight: bold;
+  -fx-text-fill: -app-primary;
+  -fx-padding: 0 0 20px 0;
+}
+
+.login-field {
+  -fx-min-width: 300px;
+}
+
+.login-error {
+  -fx-text-fill: -app-danger;
+  -fx-font-size: 12px;
+  -fx-padding: 5px;
+}
+
+.login-button {
+  -fx-background-color: -app-primary;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-font-weight: bold;
+  -fx-padding: 10px 20px;
+  -fx-background-radius: 5px;
+  -fx-min-width: 300px;
+}
+
+.login-button:hover {
+  -fx-background-color: -app-primary-dark;
+  -fx-cursor: hand;
+}
+
+.register-link {
+  -fx-text-fill: -app-primary;
+  -fx-font-size: 12px;
+  -fx-underline: true;
+  -fx-cursor: hand;
+}
+
+.register-link:hover {
+  -fx-text-fill: -app-primary-dark;
+}

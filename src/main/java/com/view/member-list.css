@@ -1,49 +1,28 @@
-.title {
-  -fx-font-size: 24px;
-  -fx-font-weight: bold;
-  -fx-text-fill: #2c3e50;
-}
+@import "menu.css";
 
-.member-list {
-  -fx-background-color: #f8f9fa;
-  -fx-padding: 15px;
-  -fx-background-radius: 5px;
-  -fx-border-radius: 5px;
-  -fx-border-color: #dee2e6;
-  -fx-border-width: 1px;
-  -fx-min-width: 300px;
-  -fx-alignment: center;
-}
-
-.member-item {
-  -fx-font-size: 16px;
+.member-info {
   -fx-padding: 10px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
   -fx-background-color: white;
-  -fx-background-radius: 3px;
-  -fx-border-radius: 3px;
-  -fx-border-color: #e9ecef;
-  -fx-border-width: 1px;
-  -fx-text-fill: #495057;
-  -fx-alignment: center;
-  -fx-min-width: 250px;
-  -fx-text-alignment: center;
+  -fx-spacing: 5px;
 }
 
-.member-item:hover {
-  -fx-background-color: #e9ecef;
-}
-
-.menu-button {
-  -fx-background-color: #4b6eaf;
-  -fx-text-fill: white;
-  -fx-font-size: 14px;
+.member-status-active {
+  -fx-text-fill: #28a745;
   -fx-font-weight: bold;
-  -fx-padding: 10px 20px;
-  -fx-background-radius: 5px;
-  -fx-min-width: 200px;
 }
 
-.menu-button:hover {
-  -fx-background-color: #3a5683;
-  -fx-cursor: hand;
+.member-status-inactive {
+  -fx-text-fill: -app-danger;
+  -fx-font-weight: bold;
+}
+
+.member-filter-box {
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-background-color: white;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-margin-bottom: 10px;
 }

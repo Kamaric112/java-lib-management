@@ -1,45 +1,28 @@
-/* src/main/java/com/view/loan-management.css */
+@import "menu.css";
 
-.vbox {
-  -fx-padding: 20px;
-  -fx-spacing: 20px;
-}
-
-.grid-pane {
-  -fx-padding: 10px;
-  -fx-vgap: 10px;
-  -fx-hgap: 10px;
-}
-
-.label {
-  -fx-font-size: 14px;
+.loan-status-active {
+  -fx-text-fill: #28a745;
   -fx-font-weight: bold;
 }
 
-.combo-box {
-  -fx-min-width: 150px;
+.loan-status-overdue {
+  -fx-text-fill: -app-danger;
+  -fx-font-weight: bold;
 }
 
-.date-picker {
-  -fx-min-width: 150px;
+.loan-details {
+  -fx-padding: 10px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-background-color: white;
+  -fx-spacing: 5px;
 }
 
-.button {
-  -fx-padding: 10px 20px;
-  -fx-font-size: 14px;
-  -fx-background-color: #007bff;
-  -fx-text-fill: white;
-  -fx-cursor: hand;
-}
-
-.button:hover {
-  -fx-background-color: #0056b3;
-}
-
-.table-view {
-  -fx-pref-height: 300px;
-}
-
-.table-column {
-  -fx-alignment: CENTER;
+.loan-filter-box {
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-background-color: white;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-margin-bottom: 10px;
 }

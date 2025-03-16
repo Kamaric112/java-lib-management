@@ -30,6 +30,9 @@ public class MenuController {
     private Button loanManagementButton;
 
     @FXML
+    private Button userManagementButton;
+
+    @FXML
     private Button teamMembersButton;
 
     @FXML
@@ -50,11 +53,31 @@ public class MenuController {
             signInButton.setVisible(false);
             registerButton.setVisible(false);
             signOutButton.setVisible(true);
+
+            // Show/hide management buttons based on user role
+            boolean isAdmin = currentUser.getRole() == User.Role.ADMIN;
+            bookManagementButton.setVisible(isAdmin);
+            loanManagementButton.setVisible(isAdmin);
+            userManagementButton.setVisible(isAdmin);
+
+            // Always show the book list and team members buttons
+            bookListButton.setVisible(true);
+            teamMembersButton.setVisible(true);
         } else {
-            currentUserLabel.setText("Not logged in"); // Clear user info when no user is logged in
+            // When not logged in
+            currentUserLabel.setText("Not logged in");
             signInButton.setVisible(true);
             registerButton.setVisible(true);
             signOutButton.setVisible(false);
+
+            // Hide management buttons
+            bookManagementButton.setVisible(false);
+            loanManagementButton.setVisible(false);
+            userManagementButton.setVisible(false);
+
+            // Hide other buttons
+            bookListButton.setVisible(false);
+            teamMembersButton.setVisible(false);
         }
     }
 
@@ -97,5 +120,10 @@ public class MenuController {
     private void signOut() throws IOException {
         AuthenticationService.signOut();
         App.setRoot("sign-in");
+    }
+
+    @FXML
+    private void switchToUserManagement() throws IOException {
+        App.setRoot("user-management");
     }
 }

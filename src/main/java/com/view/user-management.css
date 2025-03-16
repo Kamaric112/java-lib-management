@@ -1,0 +1,33 @@
+@import "menu.css";
+
+.user-role-admin {
+  -fx-text-fill: -app-primary;
+  -fx-font-weight: bold;
+}
+
+.user-role-librarian {
+  -fx-text-fill: #28a745;
+  -fx-font-weight: bold;
+}
+
+.user-role-member {
+  -fx-text-fill: #17a2b8;
+  -fx-font-weight: bold;
+}
+
+.user-filter-box {
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-background-color: white;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-margin-bottom: 10px;
+}
+
+.user-details {
+  -fx-padding: 10px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-background-color: white;
+  -fx-spacing: 5px;
+}
