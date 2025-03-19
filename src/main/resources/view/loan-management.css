@@ -1,0 +1,107 @@
+@import "menu.css";
+
+/* Loan Status Styles */
+.loan-status-active {
+  -fx-text-fill: #28a745;
+  -fx-font-weight: bold;
+}
+
+.loan-status-overdue {
+  -fx-text-fill: -app-danger;
+  -fx-font-weight: bold;
+}
+
+/* Form and Container Styles */
+.form-container {
+  -fx-background-color: white;
+  -fx-padding: 20px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-spacing: 10px;
+}
+
+.loan-details {
+  -fx-padding: 10px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-background-color: white;
+  -fx-spacing: 5px;
+}
+
+.loan-filter-box {
+  -fx-padding: 10px;
+  -fx-spacing: 10px;
+  -fx-background-color: white;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-margin-bottom: 10px;
+}
+
+/* Form Controls */
+.combo-box {
+  -fx-padding: 8px;
+  -fx-background-radius: 5px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+  -fx-font-size: 14px;
+}
+
+.combo-box:focused {
+  -fx-border-color: -app-primary;
+}
+
+.date-picker {
+  -fx-font-size: 14px;
+}
+
+.date-picker .text-field {
+  -fx-background-radius: 5px;
+  -fx-border-color: -app-border;
+  -fx-border-radius: 5px;
+}
+
+/* Labels */
+.title-label {
+  -fx-font-size: 24px;
+  -fx-font-weight: bold;
+  -fx-text-fill: -app-text;
+  -fx-padding: 0 0 10px 0;
+}
+
+/* Buttons */
+.action-button {
+  -fx-background-color: -app-primary;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-padding: 8px 16px;
+  -fx-background-radius: 5px;
+}
+
+.action-button:hover {
+  -fx-background-color: -app-primary-dark;
+  -fx-cursor: hand;
+}
+
+.delete-button {
+  -fx-background-color: -app-danger;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-padding: 8px 16px;
+  -fx-background-radius: 5px;
+}
+
+.delete-button:hover {
+  -fx-background-color: -app-danger-dark;
+  -fx-cursor: hand;
+}
+
+/* Selected Loan Styling */
+.selected-loan {
+  -fx-background-color: -app-hover;
+  -fx-border-color: -app-primary;
+  -fx-border-width: 0 0 0 3px;
+}
+
+.table-row-cell:selected .table-cell {
+  -fx-text-fill: -app-text;
+}

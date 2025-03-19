@@ -53,7 +53,7 @@ public class App extends Application {
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
-        String resourcePath = "/com/view/" + fxml + ".fxml";
+        String resourcePath = "/view/" + fxml + ".fxml";
         System.out.println("Loading FXML from: " + resourcePath);
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(resourcePath));
         return fxmlLoader.load();
