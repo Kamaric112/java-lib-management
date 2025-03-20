@@ -1,8 +1,8 @@
-module com.example {
+module com.app {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-    
+
     opens com.app to javafx.fxml;
     opens com.controller to javafx.fxml;
 
