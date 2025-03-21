@@ -1,6 +1,7 @@
 @import "menu.css";
 
-/* Loan Status Styles */
+@import "menu.css";
+
 .loan-status-active {
   -fx-text-fill: #28a745;
   -fx-font-weight: bold;
@@ -11,7 +12,6 @@
   -fx-font-weight: bold;
 }
 
-/* Form and Container Styles */
 .form-container {
   -fx-background-color: white;
   -fx-padding: 20px;
@@ -37,7 +37,6 @@
   -fx-margin-bottom: 10px;
 }
 
-/* Form Controls */
 .combo-box {
   -fx-padding: 8px;
   -fx-background-radius: 5px;
@@ -60,7 +59,6 @@
   -fx-border-radius: 5px;
 }
 
-/* Labels */
 .title-label {
   -fx-font-size: 24px;
   -fx-font-weight: bold;
@@ -68,7 +66,6 @@
   -fx-padding: 0 0 10px 0;
 }
 
-/* Buttons */
 .action-button {
   -fx-background-color: -app-primary;
   -fx-text-fill: white;
@@ -95,7 +92,6 @@
   -fx-cursor: hand;
 }
 
-/* Selected Loan Styling */
 .selected-loan {
   -fx-background-color: -app-hover;
   -fx-border-color: -app-primary;
@@ -104,4 +100,17 @@
 
 .table-row-cell:selected .table-cell {
   -fx-text-fill: -app-text;
+}
+
+.loan-overdue {
+  -fx-background-color: #ffebee; /* Light red background */
+}
+
+.loan-overdue .table-cell {
+  -fx-text-fill: #d32f2f; /* Darker red text */
+  -fx-font-weight: bold;
+}
+
+.loan-overdue:selected {
+  -fx-background-color: #ffcdd2; /* Slightly darker red when selected */
 }

@@ -71,7 +71,18 @@ public class LoanManagementController {
       loanData.addAll(allLoans);
       loanedBooksTable.setItems(loanData);
 
-      // Populate User ComboBox with User objects
+      loanedBooksTable.setRowFactory(tv -> {
+        javafx.scene.control.TableRow<Loan> row = new javafx.scene.control.TableRow<>();
+        row.itemProperty().addListener((obs, oldItem, newItem) -> {
+          if (newItem != null && newItem.isActive() && newItem.isOverdue()) {
+            row.getStyleClass().add("loan-overdue");
+          } else {
+            row.getStyleClass().remove("loan-overdue");
+          }
+        });
+        return row;
+      });
+
       List<User> users = UserService.getAllUsers();
       userIdComboBox.setItems(FXCollections.observableArrayList(users));
       userIdComboBox.setButtonCell(new ListCell<User>() {
@@ -124,7 +135,6 @@ public class LoanManagementController {
       if (selectedUser != null && selectedBook != null && loanDate != null && dueDate != null) {
         int loanId = LoanService.createLoan(selectedUser.getId(), selectedBook.getId(), loanDate, dueDate);
         if (loanId != -1) {
-          // Update book availability to false (unavailable)
           if (BookService.updateBookAvailability(selectedBook.getId(), false)) {
             System.out.println("Loan created successfully with ID: " + loanId);
             refreshLoanedBooksTable();
@@ -151,7 +161,7 @@ public class LoanManagementController {
         if (LoanService.deleteLoan(selectedLoan.getId())) {
           System.out.println("Loan deleted successfully with ID: " + selectedLoan.getId());
           refreshLoanedBooksTable();
-          deleteLoanButton.setDisable(true); // Disable button after deletion
+          deleteLoanButton.setDisable(true);
         } else {
           System.err.println("Failed to delete loan with ID: " + selectedLoan.getId());
         }
@@ -167,9 +177,9 @@ public class LoanManagementController {
   protected void handleLoanTableClick(MouseEvent event) {
     if (loanedBooksTable.getSelectionModel().getSelectedItem() != null) {
       selectedLoan = loanedBooksTable.getSelectionModel().getSelectedItem();
-      deleteLoanButton.setDisable(false); // Enable button when loan is selected
+      deleteLoanButton.setDisable(false);
     } else {
-      deleteLoanButton.setDisable(true); // Disable button if no loan selected
+      deleteLoanButton.setDisable(true);
       selectedLoan = null;
     }
   }
