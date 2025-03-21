@@ -40,13 +40,14 @@ public class BookDAOImpl implements BookDAO {
   @Override
   public int addBook(Book book) throws SQLException {
     Connection connection = DatabaseManagerService.getConnection();
-    String sql = "INSERT INTO books (title, author, isbn, genre, available) VALUES (?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO books (title, author, isbn, genre, available, publication_year) VALUES (?, ?, ?, ?, ?, ?)";
     try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
       statement.setString(1, book.getTitle());
       statement.setString(2, book.getAuthor());
       statement.setString(3, book.getIsbn());
       statement.setString(4, book.getGenre());
       statement.setBoolean(5, book.isAvailable());
+      statement.setInt(6, book.getPublicationYear());
       statement.executeUpdate();
       ResultSet rs = connection.createStatement().executeQuery("SELECT last_insert_rowid()");
       if (rs.next()) {
@@ -60,14 +61,15 @@ public class BookDAOImpl implements BookDAO {
   @Override
   public boolean updateBook(Book book) throws SQLException {
     Connection connection = DatabaseManagerService.getConnection();
-    String sql = "UPDATE books SET title = ?, author = ?, isbn = ?, genre = ?, available = ? WHERE id = ?";
+    String sql = "UPDATE books SET title = ?, author = ?, isbn = ?, genre = ?, available = ?, publication_year = ? WHERE id = ?";
     try (PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setString(1, book.getTitle());
       statement.setString(2, book.getAuthor());
       statement.setString(3, book.getIsbn());
       statement.setString(4, book.getGenre());
       statement.setBoolean(5, book.isAvailable());
-      statement.setInt(6, book.getId());
+      statement.setInt(6, book.getPublicationYear());
+      statement.setInt(7, book.getId());
       int updatedRows = statement.executeUpdate();
       return updatedRows > 0;
     }
