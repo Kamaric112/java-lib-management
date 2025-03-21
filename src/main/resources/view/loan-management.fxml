@@ -41,6 +41,7 @@
             <Insets top="10" right="10" bottom="10" left="10"/>
         </padding>
         <Button fx:id="deleteLoanButton" text="Delete Loan" onAction="#handleDeleteLoan" disable="true" styleClass="delete-button"/>
+        <Button fx:id="returnBookButton" text="Return Book" onAction="#handleReturnBook" disable="true" styleClass="action-button"/>
     </HBox>
 
     <Label text="Loaned Books Table" styleClass="title-label"/>

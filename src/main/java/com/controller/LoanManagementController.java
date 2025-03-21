@@ -53,6 +53,8 @@ public class LoanManagementController {
   private DatePicker dueDateField;
   @FXML
   private Button deleteLoanButton;
+  @FXML
+  private Button returnBookButton;
   private Loan selectedLoan;
 
   private ObservableList<Loan> loanData = FXCollections.observableArrayList();
@@ -118,6 +120,7 @@ public class LoanManagementController {
       });
 
       deleteLoanButton.setDisable(true);
+      returnBookButton.setDisable(true);
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -175,12 +178,34 @@ public class LoanManagementController {
 
   @FXML
   protected void handleLoanTableClick(MouseEvent event) {
-    if (loanedBooksTable.getSelectionModel().getSelectedItem() != null) {
-      selectedLoan = loanedBooksTable.getSelectionModel().getSelectedItem();
+    Loan loan = loanedBooksTable.getSelectionModel().getSelectedItem();
+    if (loan != null) {
+      selectedLoan = loan;
       deleteLoanButton.setDisable(false);
+      returnBookButton.setDisable(!loan.isActive());
     } else {
       deleteLoanButton.setDisable(true);
+      returnBookButton.setDisable(true);
       selectedLoan = null;
+    }
+  }
+
+  @FXML
+  protected void handleReturnBook(ActionEvent event) {
+    if (selectedLoan != null && selectedLoan.isActive()) {
+      try {
+        if (LoanService.returnBook(selectedLoan.getId())) {
+          System.out.println("Book returned successfully for loan ID: " + selectedLoan.getId());
+          refreshLoanedBooksTable();
+          returnBookButton.setDisable(true);
+        } else {
+          System.err.println("Failed to return book for loan ID: " + selectedLoan.getId());
+        }
+      } catch (SQLException e) {
+        System.err.println("Database error: " + e.getMessage());
+      }
+    } else {
+      System.err.println("No active loan selected to return.");
     }
   }
 

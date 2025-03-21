@@ -28,10 +28,21 @@ public class SignInController {
 
     @FXML
     private void initialize() {
-        // Set default error message to empty
         if (errorLabel != null) {
             errorLabel.setText("");
         }
+
+        usernameField.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                passwordField.requestFocus();
+            }
+        });
+
+        passwordField.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                signIn(new ActionEvent());
+            }
+        });
     }
 
     @FXML

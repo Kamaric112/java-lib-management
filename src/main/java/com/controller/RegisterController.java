@@ -35,10 +35,27 @@ public class RegisterController {
 
     @FXML
     private void initialize() {
-        // Set default message to empty
         if (messageLabel != null) {
             messageLabel.setText("");
         }
+
+        usernameField.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                passwordField.requestFocus();
+            }
+        });
+
+        passwordField.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                confirmPasswordField.requestFocus();
+            }
+        });
+
+        confirmPasswordField.setOnKeyPressed(event -> {
+            if (event.getCode().toString().equals("ENTER")) {
+                registerUser(new ActionEvent());
+            }
+        });
     }
 
     @FXML
