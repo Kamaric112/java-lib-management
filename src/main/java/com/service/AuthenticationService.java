@@ -13,6 +13,7 @@ public class AuthenticationService {
 
     public static void signOut() {
         currentUser = null;
+        UserService.setCurrentUser(null);
     }
 
     public User authenticateUser(String username, String password) throws SQLException {
@@ -29,6 +30,7 @@ public class AuthenticationService {
                         rs.getString("username"),
                         rs.getString("password"),
                         User.Role.valueOf(rs.getString("role")));
+                UserService.setCurrentUser(currentUser);
                 return currentUser;
             }
             return null;

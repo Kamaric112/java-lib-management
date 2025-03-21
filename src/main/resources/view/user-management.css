@@ -31,3 +31,20 @@
   -fx-background-color: white;
   -fx-spacing: 5px;
 }
+
+.action-button {
+  -fx-background-color: -app-primary;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-padding: 8px 16px;
+  -fx-background-radius: 5px;
+  -fx-cursor: hand;
+}
+
+.action-button:hover {
+  -fx-background-color: derive(-app-primary, 10%);
+}
+
+.action-button:pressed {
+  -fx-background-color: derive(-app-primary, -10%);
+}

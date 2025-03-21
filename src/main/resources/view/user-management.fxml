@@ -34,6 +34,11 @@
         </columns>
     </TableView>
 
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Edit User" onAction="#handleEditUser" styleClass="action-button"/>
+        <Button text="Delete User" onAction="#handleDeleteUser" styleClass="action-button"/>
+    </HBox>
+
     <Button text="Back to Menu" onAction="#switchToMainMenu" styleClass="menu-button"/>
 
     <stylesheets>
