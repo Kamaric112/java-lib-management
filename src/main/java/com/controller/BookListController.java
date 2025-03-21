@@ -131,9 +131,29 @@ public class BookListController {
         try {
             BookService.addBook(new Book("The Great Gatsby", "F. Scott Fitzgerald", "9780743273565", 1925, "Fiction"));
             BookService.addBook(new Book("To Kill a Mockingbird", "Harper Lee", "9780061120084", 1960, "Fiction"));
-            BookService.addBook(new Book("1984", "George Orwell", "9780451524935", 1949, "Science Fiction"));
             BookService.addBook(new Book("The Catcher in the Rye", "J.D. Salinger", "9780316769488", 1951, "Fiction"));
+            BookService.addBook(new Book("One Hundred Years of Solitude", "Gabriel García Márquez", "9780060883287",
+                    1967, "Fiction"));
+            BookService.addBook(new Book("The Lord of the Rings", "J.R.R. Tolkien", "9780618640157", 1954, "Fiction"));
+            BookService.addBook(new Book("The Alchemist", "Paulo Coelho", "9780062315007", 1988, "Fiction"));
+            BookService.addBook(new Book("The Kite Runner", "Khaled Hosseini", "9781594631931", 2003, "Fiction"));
+
+            BookService.addBook(new Book("1984", "George Orwell", "9780451524935", 1949, "Science Fiction"));
+            BookService.addBook(new Book("Dune", "Frank Herbert", "9780441172719", 1965, "Science Fiction"));
+            BookService.addBook(new Book("Foundation", "Isaac Asimov", "9780553293357", 1951, "Science Fiction"));
+            BookService.addBook(new Book("Neuromancer", "William Gibson", "9780441569595", 1984, "Science Fiction"));
+            BookService.addBook(new Book("The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "9780345391803", 1979,
+                    "Science Fiction"));
+            BookService.addBook(new Book("Brave New World", "Aldous Huxley", "9780060850524", 1932, "Science Fiction"));
+            BookService.addBook(new Book("Ready Player One", "Ernest Cline", "9780307887436", 2011, "Science Fiction"));
+
             BookService.addBook(new Book("Pride and Prejudice", "Jane Austen", "9780141439518", 1813, "Romance"));
+            BookService.addBook(new Book("Jane Eyre", "Charlotte Brontë", "9780141441146", 1847, "Romance"));
+            BookService.addBook(new Book("Outlander", "Diana Gabaldon", "9780440212560", 1991, "Romance"));
+            BookService.addBook(new Book("The Notebook", "Nicholas Sparks", "9780553816716", 1996, "Romance"));
+            BookService.addBook(new Book("Me Before You", "Jojo Moyes", "9780143124542", 2012, "Romance"));
+            BookService.addBook(
+                    new Book("The Time Traveler's Wife", "Audrey Niffenegger", "9780099464464", 2003, "Romance"));
         } catch (SQLException e) {
             showError("Error adding sample books: " + e.getMessage());
         }

@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<VBox alignment="CENTER" spacing="20.0" stylesheets="@member-list.css"
+<VBox alignment="CENTER" spacing="20.0" stylesheets="@member-list.css" styleClass="root"
       xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8" fx:controller="com.controller.MemberListController">
     
     <padding>
@@ -13,15 +13,34 @@
 
     <Label text="Team Members" styleClass="title"/>
 
-    <VBox spacing="10.0" styleClass="member-list" alignment="CENTER">
+    <VBox spacing="15.0" styleClass="member-list" alignment="CENTER">
         <VBox.margin>
-            <Insets top="10.0" bottom="10.0"/>
+            <Insets top="10.0" bottom="20.0"/>
         </VBox.margin>
-        <Label text="Nguyễn Quang Trường - 23210303" styleClass="member-item" alignment="CENTER"/>
-        <Label text="Nguyễn Hữu Nhật - 23210258 " styleClass="member-item" alignment="CENTER"/>
-        <Label text="Trần Quang Kiên - 23210232" styleClass="member-item" alignment="CENTER"/>
-        <Label text="Nguyễn Văn Minh Trí  - 23210299" styleClass="member-item" alignment="CENTER"/>
+
+        <Label text="Lập Trình Java" styleClass="member-heading"/>
+        <Label text="GVHD: Ths.Sử Nhật Hạ" styleClass="member-heading" wrapText="true"/>
+
+        <Separator>
+            <padding>
+                <Insets top="10" bottom="10"/>
+            </padding>
+        </Separator>
+
+        <Label text="Development Team" styleClass="member-heading"/>
+        
+        <VBox spacing="8.0" alignment="CENTER">
+            <Label text="Nguyễn Quang Trường - 23210303" styleClass="member-item"/>
+            <Label text="Nguyễn Hữu Nhật - 23210258" styleClass="member-item"/>
+            <Label text="Trần Quang Kiên - 23210232" styleClass="member-item"/>
+            <Label text="Nguyễn Văn Minh Trí - 23210299" styleClass="member-item"/>
+        </VBox>
     </VBox>
- <Button text="Back to Menu" onAction="#switchToMenu" styleClass="menu-button"/>
+
+    <Button text="Back to Menu" onAction="#switchToMenu" styleClass="menu-button">
+        <VBox.margin>
+            <Insets top="10.0"/>
+        </VBox.margin>
+    </Button>
 
 </VBox>

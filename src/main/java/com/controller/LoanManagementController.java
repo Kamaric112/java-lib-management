@@ -1,9 +1,11 @@
 package com.controller;
 
+import com.model.Book;
 import com.model.Loan;
+import com.model.User;
 import com.service.LoanService;
-import com.service.UserService; // Import UserService
-import com.service.BookService; // Import BookService
+import com.service.UserService;
+import com.service.BookService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,17 +14,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox; // Import ComboBox
-import javafx.scene.control.Button; // Import Button
-import javafx.scene.input.MouseEvent; // Import MouseEvent
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.input.MouseEvent;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors; // Import Collectors
-import java.io.IOException; // Import IOException
-import com.app.App; // Import App
+import java.io.IOException;
+import com.app.App;
 
 public class LoanManagementController {
 
@@ -43,16 +44,16 @@ public class LoanManagementController {
   @FXML
   private TableColumn<Loan, Boolean> activeColumn;
   @FXML
-  private ComboBox<Integer> userIdComboBox; // Use ComboBox for User ID
+  private ComboBox<User> userIdComboBox;
   @FXML
-  private ComboBox<Integer> bookIdComboBox; // Use ComboBox for Book ID
+  private ComboBox<Book> bookIdComboBox;
   @FXML
   private DatePicker loanDateField;
   @FXML
   private DatePicker dueDateField;
   @FXML
-  private Button deleteLoanButton; // FXML injection for Delete Loan Button
-  private Loan selectedLoan; // To store the selected loan
+  private Button deleteLoanButton;
+  private Loan selectedLoan;
 
   private ObservableList<Loan> loanData = FXCollections.observableArrayList();
 
@@ -70,39 +71,66 @@ public class LoanManagementController {
       loanData.addAll(allLoans);
       loanedBooksTable.setItems(loanData);
 
-      // Populate User ID ComboBox
-      List<Integer> userIds = UserService.getAllUsers().stream()
-          .map(user -> user.getId())
-          .collect(Collectors.toList());
-      userIdComboBox.setItems(FXCollections.observableArrayList(userIds));
+      // Populate User ComboBox with User objects
+      List<User> users = UserService.getAllUsers();
+      userIdComboBox.setItems(FXCollections.observableArrayList(users));
+      userIdComboBox.setButtonCell(new ListCell<User>() {
+        @Override
+        protected void updateItem(User user, boolean empty) {
+          super.updateItem(user, empty);
+          setText(empty ? "" : user.getUsername());
+        }
+      });
+      userIdComboBox.setCellFactory(cell -> new ListCell<User>() {
+        @Override
+        protected void updateItem(User user, boolean empty) {
+          super.updateItem(user, empty);
+          setText(empty ? "" : user.getUsername());
+        }
+      });
 
-      // Populate Book ID ComboBox
-      List<Integer> bookIds = BookService.getAllBooks().stream()
-          .map(book -> book.getId())
-          .collect(Collectors.toList());
-      bookIdComboBox.setItems(FXCollections.observableArrayList(bookIds));
+      List<Book> books = BookService.getAllBooks();
+      bookIdComboBox.setItems(FXCollections.observableArrayList(books));
+      bookIdComboBox.setButtonCell(new ListCell<Book>() {
+        @Override
+        protected void updateItem(Book book, boolean empty) {
+          super.updateItem(book, empty);
+          setText(empty ? "" : book.getTitle());
+        }
+      });
+      bookIdComboBox.setCellFactory(cell -> new ListCell<Book>() {
+        @Override
+        protected void updateItem(Book book, boolean empty) {
+          super.updateItem(book, empty);
+          setText(empty ? "" : book.getTitle());
+        }
+      });
 
-      deleteLoanButton.setDisable(true); // Initially disable delete button
+      deleteLoanButton.setDisable(true);
 
     } catch (SQLException e) {
-      e.printStackTrace(); // Handle error properly later
+      e.printStackTrace();
     }
   }
 
   @FXML
   protected void handleLoanBook(ActionEvent event) {
     try {
-      Integer userId = userIdComboBox.getValue(); // Get User ID from ComboBox
-      Integer bookId = bookIdComboBox.getValue(); // Get Book ID from ComboBox
+      User selectedUser = userIdComboBox.getValue();
+      Book selectedBook = bookIdComboBox.getValue();
       LocalDate loanDate = loanDateField.getValue();
       LocalDate dueDate = dueDateField.getValue();
 
-      if (userId != null && bookId != null && loanDate != null && dueDate != null) {
-        int loanId = LoanService.createLoan(userId, bookId, loanDate, dueDate);
+      if (selectedUser != null && selectedBook != null && loanDate != null && dueDate != null) {
+        int loanId = LoanService.createLoan(selectedUser.getId(), selectedBook.getId(), loanDate, dueDate);
         if (loanId != -1) {
-          System.out.println("Loan created successfully with ID: " + loanId);
-          // Refresh the table
-          refreshLoanedBooksTable();
+          // Update book availability to false (unavailable)
+          if (BookService.updateBookAvailability(selectedBook.getId(), false)) {
+            System.out.println("Loan created successfully with ID: " + loanId);
+            refreshLoanedBooksTable();
+          } else {
+            System.err.println("Failed to update book availability.");
+          }
         } else {
           System.err.println("Failed to create loan.");
         }

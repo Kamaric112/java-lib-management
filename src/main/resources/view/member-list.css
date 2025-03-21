@@ -1,28 +1,65 @@
 @import "menu.css";
 
-.member-info {
-  -fx-padding: 10px;
-  -fx-border-color: -app-border;
-  -fx-border-radius: 5px;
-  -fx-background-color: white;
-  -fx-spacing: 5px;
-}
-
-.member-status-active {
-  -fx-text-fill: #28a745;
+.title {
+  -fx-font-size: 24px;
   -fx-font-weight: bold;
+  -fx-text-fill: #2c3e50;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 2, 0, 0, 1);
+  -fx-padding: 10 0 20 0;
 }
 
-.member-status-inactive {
-  -fx-text-fill: -app-danger;
-  -fx-font-weight: bold;
-}
-
-.member-filter-box {
-  -fx-padding: 10px;
-  -fx-spacing: 10px;
+.member-list {
   -fx-background-color: white;
-  -fx-border-color: -app-border;
-  -fx-border-radius: 5px;
-  -fx-margin-bottom: 10px;
+  -fx-background-radius: 10;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
+  -fx-padding: 20;
+  -fx-min-width: 400;
+}
+
+.member-item {
+  -fx-padding: 12;
+  -fx-font-size: 14px;
+  -fx-background-color: #f8f9fa;
+  -fx-background-radius: 5;
+  -fx-border-color: #e9ecef;
+  -fx-border-radius: 5;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 3, 0, 0, 1);
+  -fx-min-width: 300;
+}
+
+.member-item:hover {
+  -fx-background-color: #e9ecef;
+  -fx-cursor: hand;
+}
+
+.member-heading {
+  -fx-font-size: 18px;
+  -fx-font-weight: bold;
+  -fx-text-fill: #495057;
+  -fx-padding: 0 0 10 0;
+}
+
+.menu-button {
+  -fx-background-color: #007bff;
+  -fx-text-fill: white;
+  -fx-font-size: 14px;
+  -fx-padding: 10 20;
+  -fx-background-radius: 5;
+  -fx-cursor: hand;
+}
+
+.menu-button:hover {
+  -fx-background-color: #0056b3;
+}
+
+.menu-button:pressed {
+  -fx-background-color: #004085;
+}
+
+* {
+  -fx-font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+.root {
+  -fx-background-color: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
 }
