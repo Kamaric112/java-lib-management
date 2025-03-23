@@ -64,7 +64,6 @@ public class RegisterController {
         String password = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
-        // Validate input
         if (username.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             showMessage("All fields are required", true);
             return;
@@ -110,7 +109,6 @@ public class RegisterController {
             messageLabel.setText(message);
             messageLabel.setStyle(isError ? "-fx-text-fill: red;" : "-fx-text-fill: green;");
         } else {
-            // Fallback to alert if message label doesn't exist
             Alert alert = new Alert(isError ? AlertType.ERROR : AlertType.INFORMATION);
             alert.setTitle(isError ? "Error" : "Success");
             alert.setHeaderText(null);

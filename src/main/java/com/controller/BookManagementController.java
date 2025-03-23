@@ -62,7 +62,6 @@ public class BookManagementController {
 
   @FXML
   public void initialize() {
-    // Initialize table columns
     idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
     titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
     authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -71,14 +70,11 @@ public class BookManagementController {
     genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
     availableColumn.setCellValueFactory(new PropertyValueFactory<>("available"));
 
-    // Load books
     refreshBookTable();
 
-    // Add selection listener
     bookTable.getSelectionModel().selectedItemProperty().addListener(
         (obs, oldSelection, newSelection) -> handleBookSelection(newSelection));
 
-    // Initialize button states
     editButton.setDisable(true);
     cancelButton.setDisable(true);
   }

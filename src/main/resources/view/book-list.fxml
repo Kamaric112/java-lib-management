@@ -13,17 +13,14 @@
     
     <Label text="Book List" styleClass="title-label"/>
 
-    <!-- Genre filter ComboBox -->
     <ComboBox fx:id="genreComboBox" promptText="Filter by Genre" styleClass="genre-combobox">
         <VBox.margin>
             <Insets bottom="10.0"/>
         </VBox.margin>
     </ComboBox>
 
-    <!-- ListView for displaying books -->
     <ListView fx:id="bookListView" VBox.vgrow="ALWAYS" prefHeight="300.0"/>
     
-    <!-- Book info section -->
     <HBox spacing="10" alignment="CENTER">
         <Label text="Total Books:" />
         <Label fx:id="totalBooksLabel" text="0" />

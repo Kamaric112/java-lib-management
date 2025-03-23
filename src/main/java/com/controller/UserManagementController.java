@@ -51,7 +51,7 @@ public class UserManagementController implements Initializable {
       userList.addAll(users);
       userTableView.setItems(userList);
     } catch (SQLException e) {
-      e.printStackTrace(); // Handle exception properly later
+      e.printStackTrace();
     }
   }
 

@@ -51,6 +51,6 @@ public class BookService {
     }
 
     public static List<Book> filterBooksByGenre(String genre) throws SQLException {
-        return bookDAO.searchBooksByGenre(genre); // Assuming searchBooksByGenre can filter by genre
+        return bookDAO.searchBooksByGenre(genre);
     }
 }
