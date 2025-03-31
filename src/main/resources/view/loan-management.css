@@ -103,14 +103,14 @@
 }
 
 .loan-overdue {
-  -fx-background-color: #ffebee; /* Light red background */
+  -fx-background-color: #ffebee;
 }
 
 .loan-overdue .table-cell {
-  -fx-text-fill: #d32f2f; /* Darker red text */
+  -fx-text-fill: #d32f2f;
   -fx-font-weight: bold;
 }
 
 .loan-overdue:selected {
-  -fx-background-color: #ffcdd2; /* Slightly darker red when selected */
+  -fx-background-color: #ffcdd2;
 }

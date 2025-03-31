@@ -33,12 +33,12 @@ public class BookListController {
     @FXML
     private void initialize() {
         loadGenres();
-        loadBooks(); // Load all books initially
+        loadBooks();
     }
 
     @FXML
     private void refreshBookList() {
-        loadBooks(); // Load all books initially
+        loadBooks();
     }
 
     private void loadBooks() {

@@ -1,5 +1,9 @@
 # Library Management System
 
+Default admin user
+username: admin
+password: 123
+
 ## Overview
 
 This is a Java-based library management system designed to manage books, users, and book loans. The application provides a user-friendly interface for library administrators to manage library resources efficiently.

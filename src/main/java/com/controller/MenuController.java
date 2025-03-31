@@ -54,28 +54,23 @@ public class MenuController {
             registerButton.setVisible(false);
             signOutButton.setVisible(true);
 
-            // Show/hide management buttons based on user role
             boolean isAdmin = currentUser.getRole() == User.Role.ADMIN;
             bookManagementButton.setVisible(isAdmin);
             loanManagementButton.setVisible(isAdmin);
             userManagementButton.setVisible(isAdmin);
 
-            // Always show the book list and team members buttons
             bookListButton.setVisible(true);
             teamMembersButton.setVisible(true);
         } else {
-            // When not logged in
             currentUserLabel.setText("Not logged in");
             signInButton.setVisible(true);
             registerButton.setVisible(true);
             signOutButton.setVisible(false);
 
-            // Hide management buttons
             bookManagementButton.setVisible(false);
             loanManagementButton.setVisible(false);
             userManagementButton.setVisible(false);
 
-            // Hide other buttons
             bookListButton.setVisible(false);
             teamMembersButton.setVisible(false);
         }
