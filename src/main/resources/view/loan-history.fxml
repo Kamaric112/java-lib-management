@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.controller.LoanHistoryController"
+      alignment="TOP_CENTER" spacing="10" style="-fx-padding: 20;">
+
+    <Label fx:id="titleLabel" text="Loan History for User: [Username]" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <TableView fx:id="loanHistoryTable" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="bookTitleColumn" prefWidth="200.0" text="Book Title"/>
+            <TableColumn fx:id="loanDateColumn" prefWidth="100.0" text="Loan Date"/>
+            <TableColumn fx:id="dueDateColumn" prefWidth="100.0" text="Due Date"/>
+            <TableColumn fx:id="returnDateColumn" prefWidth="100.0" text="Return Date"/>
+            <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Status"/>
+        </columns>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+    </TableView>
+</VBox>
